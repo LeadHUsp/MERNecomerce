@@ -1,25 +1,27 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import s from "./Nav.module.scss";
+import { useSelector } from "react-redux";
 
 const NavBar = (props) => {
   return (
-    <nav className={s.nav_bar}>
-      <ul className={`${s.nav_list} `}>
-        <li className={s.nav_item}>
-          <NavLink className={s.nav_item} to='/'>
+    <nav className={`${s.navbar} container`}>
+      <NavLink to='/' className={`${s.logo}`}>
+        Gadget-shop
+      </NavLink>
+      <ul className={`${s.navbar_collapse}`}>
+        <li>
+          <NavLink className={`${s.nav_item}`} to='/'>
             Home
           </NavLink>
         </li>
-        <li className={s.nav_item}>
-          <NavLink className={s.nav_item} to='/shop'>
+        <li>
+          <NavLink className={`${s.nav_item}`} to='/shop'>
             Shop
           </NavLink>
         </li>
-        <li className={s.nav_item}>
-          <NavLink className={s.nav_item} to='/contacts'>
-            Contacts
-          </NavLink>
+        <li>
+          <button className=''>Log In</button>
         </li>
       </ul>
     </nav>

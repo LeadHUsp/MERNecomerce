@@ -11,7 +11,7 @@ const Login = (props) => {
       <div className={style.login_input}>
         <input name='password' type='text' placeholder='password' />
       </div>
-      <button>LOGIN</button>
+      <button className='waves-effect waves-light btn'>LOGIN</button>
     </form>
   );
 };

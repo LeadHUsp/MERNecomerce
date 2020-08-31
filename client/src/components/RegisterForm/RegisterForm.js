@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { register } from "../../redux/reducers/auth";
+import { register } from "redux/reducers/authReducer";
 
 import style from "./RegisterForm.module.scss";
 
@@ -16,8 +18,8 @@ const RegisterForm = (props) => {
     console.log("submit");
     props.register({ name, email, password });
   };
-  const onChange = (name) => (event) => {
-    setData({ ...data, [name]: event.target.value });
+  const onChange = (event) => {
+    setData({ ...data, [event.target.name]: event.target.value });
   };
   return (
     <form className={style.login_form}>
@@ -25,7 +27,7 @@ const RegisterForm = (props) => {
       <div className={style.login_input}>
         <input
           value={name}
-          onChange={onChange("name")}
+          onChange={onChange}
           name='name'
           type='text'
           placeholder='name'
@@ -34,16 +36,17 @@ const RegisterForm = (props) => {
       <div className={style.login_input}>
         <input
           value={email}
-          onChange={onChange("email")}
+          onChange={onChange}
           name='email'
           type='text'
           placeholder='email'
         />
+        <FontAwesomeIcon icon={faEnvelope} />
       </div>
       <div className={style.login_input}>
         <input
           value={password}
-          onChange={onChange("password")}
+          onChange={onChange}
           name='password'
           type='text'
           placeholder='password'

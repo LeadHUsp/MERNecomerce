@@ -1,32 +1,51 @@
-$grid-breakpoints: (xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1600px,
-);
+@import "reset.scss";
+@import 'vars.scss';
 
-$container-max-widths: (sm: 540px,
-    md: 720px,
-    lg: 960px,
-    xl: 1140px,
-    xxl: 1440px,
-);
-
-//Swiper
-$themeColor: #f6731c;
-
-.swiper-pagination-progressbar {
-
-    .swiper-container-horizontal>&,
-    .swiper-container-vertical>&.swiper-pagination-progressbar-opposite {
-        width: 100%;
-        height: 4px;
-        left: 0;
-        top: unset !important;
-        bottom: 0;
-    }
+html,
+body {
+    width: 100%;
+    height: 100%;
 }
 
-@import "../../../node_modules/bootstrap/scss/bootstrap-grid.scss";
-@import "reset.scss";
+.container {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@each $bp,
+$size in $breakpoints {
+    @media screen and (min-width: $size) {
+
+        @if($bp==xl) {
+            .container {
+                max-width: 1096px;
+            }
+        }
+
+        @if($bp==xxl) {
+            .container {
+                max-width: 1266px;
+            }
+        }
+
+        @if($bp==sm) {
+            .container {
+                max-width: 600px;
+            }
+        }
+
+        @if($bp==md) {
+            .container {
+                max-width: 720px;
+            }
+        }
+
+        @if($bp==lg) {
+            .container {
+                max-width: 960px;
+            }
+        }
+    }
+}

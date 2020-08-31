@@ -1,13 +1,25 @@
-.nav_bar {
-  width: 100%;
+@import 'assets/scss/mixins.scss';
+@import 'assets/scss/vars.scss';
+
+.navbar {
+    display: flex;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    @extend %roboto_r;
+
+
 }
 
-.nav_list {
-  width: 100%;
-  display: flex;
-  justify-content: space-around;
+.logo {
+    @include col(20%);
+}
+
+.navbar_collapse {
+    display: flex;
+    @include col(50%);
 }
 
 .nav_item {
-  padding: 15px;
+    color: $primary;
+    font-size: 20px;
 }
