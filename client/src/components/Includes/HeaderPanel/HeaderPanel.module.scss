@@ -1,0 +1,42 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/vars.scss";
+
+
+.panel {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.log_in {
+    text-transform: uppercase;
+    @extend %roboto_b;
+    font-size: 12px;
+    color: $secondary;
+    border: 1px solid black;
+    @include col(25%);
+    display: flex;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    transition: 350ms all ease-in;
+    background: transparent;
+    cursor: pointer;
+
+    &:hover {
+        background: $hover;
+        color: #fff;
+    }
+
+    span {
+        margin-left: 10px;
+        font-size: 15px;
+    }
+}
+
+.user_name {
+    @extend %roboto_r;
+    font-size: 18px;
+    padding-right: 10px;
+}

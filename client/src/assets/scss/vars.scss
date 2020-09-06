@@ -1,10 +1,10 @@
 %roboto_r {
-    font-family: "RobotoRegular", serif;
+    font-family: "RobotoRegular";
     font-weight: 400;
 }
 
-%roboto_r {
-    font-family: "RobotoBold", serif;
+%roboto_b {
+    font-family: "RobotoBold";
     font-weight: 700;
 }
 
@@ -16,5 +16,7 @@ $breakpoints: (xs: 0,
     xl: 1280px,
     xxl: 1600px);
 
-$primary:#f91c3b;
-$secondary: #093868;
+$primary:#12a88f;
+$secondary: #818181;
+$hover:rgb(9, 116, 187);
+$active:#eb7c0c;

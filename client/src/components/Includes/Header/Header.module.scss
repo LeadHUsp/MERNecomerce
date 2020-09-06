@@ -1,3 +1,21 @@
+@import "assets/scss/mixins.scss";
+@import "assets/scss/vars.scss";
+
 .header {
     width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+    display: flex;
+    position: relative;
+}
+
+.navbar_wrapper {
+    @include col(65%);
+}
+
+.panel_wrapper {
+    @include col(35%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -8,13 +8,11 @@ const instance = axios.create({
 });
 
 export const AuthApi = {
-  logIn() {
-    return console.log("login");
+  logIn({ email, password }) {
+    const body = JSON.stringify({ email, password });
+    return instance.post("/api/user/login", body);
   },
-  logOut() {
-    return console.log("log out");
-  },
-  register(name, email, password) {
+  register({ name, email, password }) {
     const body = JSON.stringify({ name, email, password });
     return instance.post("/api/user/register", body);
   },

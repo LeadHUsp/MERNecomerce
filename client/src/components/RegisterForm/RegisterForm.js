@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import { register } from "redux/reducers/authReducer";
+import { registerUserStart } from "redux/reducers/authReducer";
 
 import style from "./RegisterForm.module.scss";
 
@@ -13,18 +11,19 @@ const RegisterForm = (props) => {
     password: "",
   });
   const { name, email, password } = data;
-  const onSubmit = async (e) => {
+  const onSubmit = (e) => {
     e.preventDefault();
     console.log("submit");
-    props.register({ name, email, password });
+    props.registerUserStart(data);
   };
   const onChange = (event) => {
     setData({ ...data, [event.target.name]: event.target.value });
   };
   return (
-    <form className={style.login_form}>
-      register form
-      <div className={style.login_input}>
+    <form className={style.form} onSubmit={onSubmit}>
+      <div className={style.head}>Регистрация</div>
+
+      <div className={style.input}>
         <input
           value={name}
           onChange={onChange}
@@ -33,7 +32,7 @@ const RegisterForm = (props) => {
           placeholder='name'
         />
       </div>
-      <div className={style.login_input}>
+      <div className={style.input}>
         <input
           value={email}
           onChange={onChange}
@@ -41,9 +40,8 @@ const RegisterForm = (props) => {
           type='text'
           placeholder='email'
         />
-        <FontAwesomeIcon icon={faEnvelope} />
       </div>
-      <div className={style.login_input}>
+      <div className={style.input}>
         <input
           value={password}
           onChange={onChange}
@@ -52,9 +50,9 @@ const RegisterForm = (props) => {
           placeholder='password'
         />
       </div>
-      <button onClick={onSubmit}>Register</button>
+      <button className={style.btn}>Зарегистрироватся</button>
     </form>
   );
 };
 
-export default connect(null, { register })(RegisterForm);
+export default connect(null, { registerUserStart })(RegisterForm);

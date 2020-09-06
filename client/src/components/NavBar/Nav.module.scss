@@ -1,25 +1,89 @@
-@import 'assets/scss/mixins.scss';
-@import 'assets/scss/vars.scss';
+@import "assets/scss/mixins.scss";
+@import "assets/scss/vars.scss";
 
 .navbar {
     display: flex;
     padding-top: 25px;
     padding-bottom: 25px;
-    @extend %roboto_r;
+    @extend %roboto_b;
+    width: 100%;
 
-
+    align-items: center;
 }
 
 .logo {
     @include col(20%);
+    color: $secondary;
+    text-transform: uppercase;
+    @extend %roboto_b;
 }
 
-.navbar_collapse {
+.navbar_lists {
     display: flex;
-    @include col(50%);
+    @include col(80%);
+    justify-content: center;
 }
 
 .nav_item {
-    color: $primary;
-    font-size: 20px;
+    color: $secondary;
+    font-size: 14px;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: block;
+}
+
+.nav_item_link {
+    color: $secondary;
+    position: relative;
+    padding: 15px;
+    display: inline-flex;
+
+    &:hover {
+        color: #fff;
+        background: $hover;
+    }
+
+    transition: 350ms all ease;
+}
+
+.active {
+    color: $active;
+}
+
+
+
+.dropdown_toggle {
+    position: relative;
+    display: inline-flex;
+    background: transparent;
+    @extend %roboto_b;
+    font-size: 14px;
+    text-transform: uppercase;
+    color: $secondary;
+    padding: 15px;
+    cursor: pointer;
+
+    &:hover {
+        color: #fff;
+        background: $hover;
+    }
+
+    span {
+        margin-left: 10px;
+        font-size: 14px;
+    }
+}
+
+.dropdown_lists {
+    position: absolute;
+    margin-top: 20px;
+    top: -100%;
+    display: flex;
+    background: #fff;
+    border: 1px solid grey;
+    transition: 500ms all ease;
+}
+
+.dropdown_show {
+    top: 60px;
 }

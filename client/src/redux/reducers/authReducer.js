@@ -1,10 +1,19 @@
-import { AuthApi } from "../../dataAccessLayer";
+import {
+  AuthApi
+} from "../../dataAccessLayer";
 
 //Types
+export const REGISTER_USER_START = "REGISTER_USER_START";
 const REGISTER_SECCESS = "REGISTER_SECCESS";
 const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGIN_START = "LOGIN_START";
+export const LOGIN_SECCESS = "LOGIN_SECCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
 const USER_LOADED = "USER_LOADED";
+const LOGOUT = "LOGOUT";
 const AUTH_ERROR = "AUTH_ERROR";
+const SHOW_LOGIN_FORM = "SHOW_LOGIN_FORM";
+const HIDE_LOGIN_FORM = "HIDE_LOGIN_FORM";
 
 //Initial state
 const initialState = {
@@ -12,6 +21,7 @@ const initialState = {
   isAuth: null,
   loading: true,
   user: null,
+  showLoginForm: false,
 };
 
 //auth reducer
@@ -22,22 +32,37 @@ const authReducer = (state = initialState, action) => {
       return {
         ...state,
         user: action.payload,
-        isAuth: true,
-        loading: false,
+          isAuth: true,
+          loading: false,
       };
     case REGISTER_SECCESS:
+    case REGISTER_USER_START:
+    case LOGIN_SECCESS:
+    case LOGIN_START:
       return {
         ...state,
         ...action.payload,
-        isAuth: true,
-        loading: false,
+          isAuth: true,
+          loading: false,
       };
     case REGISTER_FAIL:
     case AUTH_ERROR:
+    case LOGOUT:
+    case LOGIN_FAIL:
       return {
         ...state,
         isAuth: false,
-        loading: false,
+          loading: false,
+      };
+    case SHOW_LOGIN_FORM:
+      return {
+        ...state,
+        showLoginForm: true,
+      };
+    case HIDE_LOGIN_FORM:
+      return {
+        ...state,
+        showLoginForm: false,
       };
     default:
       return state;
@@ -45,35 +70,54 @@ const authReducer = (state = initialState, action) => {
 };
 
 //actions
-
-export const registerUser = (payload) => {
-  localStorage.setItem("token", payload.token);
+export const setLogOut = () => {
+  localStorage.removeItem("token");
   return {
-    type: REGISTER_SECCESS,
+    type: LOGOUT,
+  };
+};
+export const loginStart = (payload) => {
+  return {
+    type: LOGIN_START,
     payload,
   };
 };
+export const logInUser = (payload) => {
+  return {
+    type: LOGIN_SECCESS,
+    payload,
+  };
+};
+export const registerUserStart = (payload) => {
+  return {
+    type: REGISTER_USER_START,
+    payload,
+  }
+}
+
 export const registerFail = () => {
   localStorage.removeItem("token");
   return {
     type: REGISTER_FAIL,
   };
 };
+export const setShowLoginForm = () => {
+  return {
+    type: SHOW_LOGIN_FORM,
+  };
+};
+export const setHideLoginForm = () => {
+  return {
+    type: HIDE_LOGIN_FORM,
+  };
+};
 
 //thunk
-export const register = ({ name, email, password }) => async (dispatch) => {
-  try {
-    const res = await AuthApi.register(name, email, password);
-    dispatch(registerUser(res.data));
-  } catch (error) {
-    console.log(error);
-    dispatch(registerFail());
-  }
-};
+
+
 export const loadUser = () => async (dispatch) => {
   try {
     const res = await AuthApi.getUserData(localStorage.token);
-    console.log(res);
     dispatch({
       type: USER_LOADED,
       payload: res.data,
